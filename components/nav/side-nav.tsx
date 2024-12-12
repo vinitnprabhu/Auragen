@@ -34,7 +34,7 @@ const SideNav = () => {
     <div className="h-screen p-5 shadow-sm border">
       {menu.map((item, index) => {
         return (
-          <div key={index} className={`${path === item.path ? "bg-primary text-white" : "hover:bg-primary hover:text-white"} flex m-2 mr-4 p-2 rounded-lg cursor-pointer`}>
+          <div key={index} className={`${path === item.path ? "border-primary text-primary" : "hover:border-primary hover:text-primary"} flex m-2 mr-4 p-2 rounded-lg cursor-pointer border`}>
             <div className="flex justify-center items-center md:justify-start w-full">
                 <Link href={item.path} className="flex">
                     <item.icon />{" "}

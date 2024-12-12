@@ -4,6 +4,7 @@ import template from "@/utils/template";
 import Image from "next/image";
 import { Search } from "lucide-react";
 import Link from "next/link";
+import toast from "react-hot-toast";
 
 export default function Page() {
   const [search, setSearch] = useState("");
