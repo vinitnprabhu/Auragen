@@ -13,23 +13,8 @@ import { Editor } from '@toast-ui/react-editor';
 import toast from "react-hot-toast";
 import { saveQuery } from '@/actions/ai';
 import { useUser } from '@clerk/nextjs';
-
-export interface Form {
-  label: string;
-  field: string;
-  name: string;
-  required: boolean;
-}
-
-export interface Template {
-  name: string;
-  slug: string;
-  icon: string;
-  desc: string;
-  category: string;
-  aiPrompt: string;
-  form: Form[];
-}
+import { Template } from '@/utils/types';
+import { useUsage } from '@/context/usage';
 
 const Page = ({ params }: { params: Promise<{ slug: string }> }) => {
   const resolvedParams = React.use(params); // Resolving the promise
@@ -40,6 +25,7 @@ const Page = ({ params }: { params: Promise<{ slug: string }> }) => {
 
   const editorRef = React.useRef<any>(null);
   const {user} = useUser();
+  const {fetchUsage} = useUsage();
   console.log(user);
   const email = user?.primaryEmailAddress?.emailAddress || "";
 
@@ -58,6 +44,7 @@ const Page = ({ params }: { params: Promise<{ slug: string }> }) => {
     try {
       const data = await runAi(t.aiPrompt + query);
       setContent(data);
+      fetchUsage();
       await saveQuery(t, email, query, data);
     } catch (err) {
       setContent("There was an error with your request.");

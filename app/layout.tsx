@@ -9,6 +9,7 @@ import {
   UserButton
 } from '@clerk/nextjs';
 import TopNav from "@/components/nav/top-nav";
+import { UsageProvider } from "@/context/usage";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -35,10 +36,12 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body>
-          <header>
-            <TopNav />
-          </header>
-          <main>{children}</main>
+          <UsageProvider>
+            <header>
+              <TopNav />
+            </header>
+            <main>{children}</main>
+          </UsageProvider>
         </body>
     </html>
     </ClerkProvider>
