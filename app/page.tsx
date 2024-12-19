@@ -1,44 +1,38 @@
-"use client"
-
-import {runAi} from "@/actions/ai"
-import { useState, useEffect } from "react";
+import React from "react";
+import { ChevronRight } from "lucide-react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import {Input} from "@/components/ui/input";
-import {Card, CardHeader, CardContent} from "@/components/ui/card";
-import ReactMarkdown from 'react-markdown';
+import Image from "next/image";
 
-export default function Page() {
-
-  const [response, setResponse] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [query, setQuery] = useState("");
-
-  const handleClick = async (e: any) => {
-    e.preventDefault();
-    setLoading(true);
-    try{
-      const data = await runAi(query);
-      setResponse(data);
-    } catch(err) {
-      console.log(err);
-    } finally {
-      setLoading(false);
-    }
-  }
+export default function Home() {
   return (
-    <div>
-      <form onSubmit={handleClick}>
-        <Input className="mb-5" placeholder="Ask me anything" value={query} onChange={e => setQuery(e.target.value)}/>
-        <Button>Generate</Button>
-      </form>
-      <Card className="mt-5">
-        <CardContent>
-          AI Response
-        </CardContent>
-        <CardContent>
-          {loading ? <div>Loading...</div> : <ReactMarkdown>{response}</ReactMarkdown> }
-        </CardContent>
-      </Card>
+    <div
+      className="relative bg-cover bg-center"
+      style={{
+        backgroundImage: 'url("/background.jpg")',
+        height: "50vh",
+      }}
+    >
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#010818] z-0"></div>
+
+      <div className="relative z-10 flex items-center justify-center h-full">
+        <div className="text-center">
+          <Image
+            src="/home-logo.png" 
+            alt="Company Logo"
+            width={400} 
+            height={50} 
+            className="mx-auto" // Center the image horizontally
+          />
+          <p className="text-white mb-5">
+            Generate AI content for your blog, website, or social media with a
+            single click and more
+          </p>
+          <Link href="/dashboard">
+            <Button variant="outline">Get started</Button>
+          </Link>
+        </div>
+      </div>
     </div>
-  )
+  );
 }

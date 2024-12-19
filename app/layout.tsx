@@ -40,7 +40,7 @@ export default function RootLayout({
             <header>
               <TopNav />
             </header>
-            <main>{children}</main>
+              <main>{children}</main>
           </UsageProvider>
         </body>
     </html>

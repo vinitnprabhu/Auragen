@@ -33,24 +33,27 @@ const SideNav = () => {
 
   return (
     <div className="flex flex-col h-screen">
-      <ul className="h-screen p-5 shadow-sm border">
+      <ul className="flex flex-col flex-grow p-5 shadow-sm border">
         {menu.map((item, index) => {
           return (
-            <li key={index} className={`${path === item.path ? "border-primary text-primary" : "hover:border-primary hover:text-primary"} flex m-2 mr-4 p-2 rounded-lg cursor-pointer border`}>
-              <div className="flex justify-center items-center md:justify-start w-full">
-                  <Link href={item.path} className="flex">
-                      <item.icon />{" "}
-                      <span className='ml-2 hidden md:inline'>{item.name}</span>
-                  </Link>
-              </div>
+            <li
+              key={index}
+              className={`${path === item.path ? "border-primary text-primary" : "hover:border-primary hover:text-primary"} flex m-2 mr-4 p-2 rounded-lg cursor-pointer border`}
+            >
+              <Link href={item.path} className="flex w-full">
+                <div className="flex justify-center items-center md:justify-start w-full">
+                  <item.icon />
+                  <span className="ml-2 hidden md:inline">{item.name}</span>
+                </div>
+              </Link>
             </li>
           );
         })}
-        <div className="pb-20 mt-auto">
+        <div className="mt-auto" style={{ marginBottom: '60px' }}>
           <Usage />
         </div>
       </ul>
-  </div>
+    </div>
   );
 };
 

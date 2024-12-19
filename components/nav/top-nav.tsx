@@ -12,17 +12,20 @@ import Link from 'next/link';
 import Image from "next/image";
 import { Toaster } from 'react-hot-toast';
 
-
-
 const TopNav = () => {
   const { isSignedIn, user} = useUser();
   return (
     <nav className='flex justify-between items-center p-2 shadow'>
         <Toaster />
-        <Link href="/">Auragen</Link>
-        <div>
-            {isSignedIn && <Link href="/dashboard" className="mr-2">{`${user.fullName}'s Dashboard`}</Link>}
-        </div>
+        <Link href="/">
+        <Image
+              src="/nav-logo.png" 
+              alt="Auragen Logo"
+              width={200}
+              height={200} 
+              className="hover:opacity-80 transition-opacity duration-200"
+            />
+        </Link>
         <SignedOut>
             <SignInButton />
         </SignedOut>
