@@ -21,8 +21,8 @@ const TopNav = () => {
         <Image
               src="/nav-logo.png" 
               alt="Auragen Logo"
-              width={200}
-              height={200} 
+              width={150}
+              height={150} 
               className="hover:opacity-80 transition-opacity duration-200"
             />
         </Link>

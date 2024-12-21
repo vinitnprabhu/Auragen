@@ -50,28 +50,30 @@ export async function saveQuery(
     return {ok: false}
   }
 }
-
-export async function getQueries(email:string, page: number, pageSize: number) {
+export async function getQueries(email: string, page: number, pageSize: number) {
   try {
-    await db();
+    await db(); // Ensure the database connection is established
     const skip = (page - 1) * pageSize;
-    const totalQueries = await Query.countDocuments({email});
+    const totalQueries = await Query.countDocuments({ email });
     const queries = await Query.find({ email })
       .sort({ createdAt: -1 }) 
       .skip(skip)
       .limit(pageSize)
       .lean();
 
+    const plainQueries = JSON.parse(JSON.stringify(queries));
+
     return {
-      queries,
+      queries: plainQueries,
       totalPages: Math.ceil(totalQueries / pageSize),
-    }
+    };
   } catch (err) {
     return {
       ok: false,
-    }
+    };
   }
 }
+
 
 export async function usageCount(email: string) {
   await db();

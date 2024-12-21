@@ -66,7 +66,7 @@ export default function Page() {
   return (
     <div>
       <div className="p-10 my-5 mx-5 mb-5 rounded-lg bg-slate-200 dark:bg-slate-800 flex flex-col justify-center items-center">
-        <h1 className="text-xl">History</h1>
+        <h1 className="text-2xl font-semibold">History</h1>
         <p className="text-sm text-gray-500">Your previous search history</p>
       </div>
 
