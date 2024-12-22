@@ -55,10 +55,19 @@ export default function Page() {
     }
   };
 
-  if (!queries.length) {
+  // Show "No history" message if no records are returned
+  if (loading && !queries.length) {
     return (
       <div className="flex justify-center items-center h-screen">
         <Loader2Icon className="animate-spin mx-2" />
+      </div>
+    );
+  }
+
+  if (!queries.length) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <p className="text-lg text-gray-500">No history</p>
       </div>
     );
   }
