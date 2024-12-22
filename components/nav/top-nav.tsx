@@ -15,7 +15,7 @@ import { Toaster } from 'react-hot-toast';
 const TopNav = () => {
   const { isSignedIn, user} = useUser();
   return (
-    <nav className='flex justify-between items-center p-2 shadow'>
+    <nav className='flex justify-between items-center p-2 pr-3 shadow'>
         <Toaster />
         <Link href="/">
         <Image
